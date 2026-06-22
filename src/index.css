@@ -1,0 +1,248 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Clash Display", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Satoshi", ui-sans-serif, system-ui, sans-serif;
+
+  /* Strong custom easing (Emil) — built-in curves lack punch */
+  --ease-out-strong: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out-strong: cubic-bezier(0.77, 0, 0.175, 1);
+
+  /* Deep navy base */
+  --color-navy-950: #050b18;
+  --color-navy-900: #0a1426;
+  --color-navy-800: #0f1d38;
+  --color-navy-700: #16294d;
+  --color-navy-600: #1f3a6b;
+  --color-navy-500: #2c4f8f;
+
+  /* Amber / gold accent */
+  --color-amber-300: #fcd34d;
+  --color-amber-400: #fbbf24;
+  --color-amber-500: #f59e0b;
+  --color-amber-600: #d97706;
+
+  --color-ink: #e8edf7;
+  --color-muted: #9fb0cc;
+
+  /* Fixed: dark text that sits on amber surfaces (must stay dark in both themes) */
+  --color-onaccent: #050b18;
+}
+
+/* Theme-scoped (non-utility) tokens */
+:root {
+  color-scheme: dark;
+  --grid-stroke: #16294d;
+  --dot-color: #16294d;
+}
+
+/* ---------------- LIGHT THEME ---------------- */
+[data-theme="light"] {
+  color-scheme: light;
+
+  --color-navy-950: #e9edf4; /* page background */
+  --color-navy-900: #eef2f8;
+  --color-navy-800: #ffffff; /* card base */
+  --color-navy-700: #ccd6e8; /* borders */
+  --color-navy-600: #b3c1dd;
+  --color-navy-500: #8aa0c4;
+
+  --color-ink: #0e1d38; /* primary text */
+  --color-muted: #51618a; /* secondary text */
+
+  /* amber needs to darken for AA contrast on light surfaces */
+  --color-amber-300: #b45309;
+  --color-amber-400: #b45309;
+
+  --grid-stroke: #d3dcec;
+  --dot-color: #d3dcec;
+}
+
+@layer base {
+  * {
+    border-color: color-mix(in oklab, var(--color-navy-500) 25%, transparent);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: var(--color-navy-950);
+    color: var(--color-ink);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+    transition:
+      background-color 0.4s var(--ease-out-strong),
+      color 0.4s var(--ease-out-strong);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+
+  ::selection {
+    background-color: var(--color-amber-500);
+    color: var(--color-onaccent);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-amber-400);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-navy-950);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-navy-600);
+  border-radius: 99px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-amber-500);
+}
+
+/* Animated route dash for hero SVG */
+@keyframes route-dash {
+  to {
+    stroke-dashoffset: -1000;
+  }
+}
+.route-dash {
+  stroke-dasharray: 8 14;
+  animation: route-dash 24s linear infinite;
+}
+
+@keyframes pulse-node {
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: scale(0.85);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+}
+.pulse-node {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: pulse-node 3.5s ease-in-out infinite;
+}
+
+/* Aurora gradient drift */
+@keyframes aurora {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-4%, 3%) scale(1.1);
+  }
+}
+.aurora {
+  animation: aurora 18s ease-in-out infinite;
+}
+
+/* Themeable hero grid + dot pattern */
+.svg-grid line {
+  stroke: var(--grid-stroke);
+}
+.dot-grid {
+  background-image: radial-gradient(circle at 1px 1px, var(--dot-color) 1px, transparent 0);
+  background-size: 32px 32px;
+}
+
+/* Ambient page background dot-grid (themeable, faded toward edges) */
+.net-grid {
+  background-image: radial-gradient(circle at 1px 1px, var(--dot-color) 1px, transparent 0);
+  background-size: 34px 34px;
+  opacity: 0.55;
+  -webkit-mask-image: radial-gradient(ellipse 78% 70% at 50% 36%, #000 26%, transparent 80%);
+  mask-image: radial-gradient(ellipse 78% 70% at 50% 36%, #000 26%, transparent 80%);
+}
+
+/* ---- TIR / truck scene ---- */
+@keyframes wheel-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.wheel-spin {
+  transform-box: fill-box;
+  transform-origin: center;
+  /* calm, dignified pace — not a toy */
+  animation: wheel-spin 2.6s linear infinite;
+}
+
+@keyframes road-move {
+  to {
+    stroke-dashoffset: -200;
+  }
+}
+.road-move {
+  stroke-dasharray: 28 22;
+  animation: road-move 1.4s linear infinite;
+}
+
+@keyframes truck-bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-1px);
+  }
+}
+.truck-bob {
+  animation: truck-bob 4s ease-in-out infinite;
+}
+
+@keyframes speed-line {
+  0% {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  40% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-90px);
+  }
+}
+.speed-line {
+  animation: speed-line 2s linear infinite;
+}
+
+/* Press feedback (Emil): buttons must feel responsive */
+.press-scale {
+  transition: transform 160ms var(--ease-out-strong);
+}
+.press-scale:active {
+  transform: scale(0.97);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
