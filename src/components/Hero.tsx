@@ -35,7 +35,7 @@ export function Hero() {
         className="aurora pointer-events-none absolute -right-1/4 top-0 h-[55vh] w-[55vh] rounded-full bg-navy-500/30 blur-[120px]"
         style={{ animationDelay: "6s" }}
       />
-      <div className="absolute inset-0 bg-gradient-to-b from-navy-950/40 via-transparent to-navy-950" />
+      <div className="absolute inset-0 bg-linear-to-b from-navy-950/40 via-transparent to-navy-950" />
 
       <motion.div
         style={{ opacity }}

@@ -25,7 +25,7 @@ export function Contact() {
 
   return (
     <section className="relative py-24 sm:py-32">
-      <div className="absolute inset-0 bg-gradient-to-b from-navy-950 via-navy-900 to-navy-950" />
+      <div className="absolute inset-0 bg-linear-to-b from-navy-950 via-navy-900 to-navy-950" />
       <div className="relative mx-auto max-w-7xl px-5 sm:px-8">
         <Reveal>
           <div className="text-center">

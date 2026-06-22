@@ -55,8 +55,8 @@ export function CargoForm() {
 
   return (
     <section id="yuk-sorgusu" className="relative scroll-mt-24 overflow-hidden py-24 sm:py-32">
-      <div className="absolute inset-0 bg-gradient-to-b from-navy-950 via-navy-900 to-navy-950" />
-      <div className="aurora pointer-events-none absolute -left-40 top-1/3 h-[50vh] w-[50vh] rounded-full bg-amber-500/[0.06] blur-[130px]" />
+      <div className="absolute inset-0 bg-linear-to-b from-navy-950 via-navy-900 to-navy-950" />
+      <div className="aurora pointer-events-none absolute -left-40 top-1/3 h-[50vh] w-[50vh] rounded-full bg-amber-500/6 blur-[130px]" />
 
       <div className="relative mx-auto grid max-w-7xl items-start gap-10 px-5 sm:px-8 lg:grid-cols-[0.85fr_1.15fr] lg:gap-14">
         {/* left: info panel */}
@@ -158,7 +158,7 @@ export function CargoForm() {
                     required
                     value={form.transport}
                     onChange={set("transport")}
-                    className={`${inputCls} appearance-none bg-[length:1.1rem] bg-[right_1rem_center] bg-no-repeat pr-10`}
+                    className={`${inputCls} appearance-none bg-size-1.1rem bg-position-[right_1rem center] bg-no-repeat pr-10`}
                     style={{
                       backgroundImage:
                         "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fbbf24' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>\")",

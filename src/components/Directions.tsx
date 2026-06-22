@@ -4,7 +4,7 @@ import { continents } from "../data/site";
 export function Directions() {
   return (
     <section id="istiqametlerimiz" className="relative scroll-mt-24 py-24 sm:py-32">
-      <div className="absolute inset-0 bg-gradient-to-b from-navy-950 via-navy-900 to-navy-950" />
+      <div className="absolute inset-0 bg-linear-to-b from-navy-950 via-navy-900 to-navy-950" />
       <div className="relative mx-auto max-w-7xl px-5 sm:px-8">
         <Reveal>
           <p className="text-sm font-semibold uppercase tracking-[0.25em] text-amber-400">
